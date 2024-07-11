@@ -1,19 +1,20 @@
-FROM python:3.9-alpine as build
+# Use the official Python image from the Docker Hub
+FROM python:3.9-slim
 
+# Set the working directory
 WORKDIR /app
 
+# Copy the requirements file into the container
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
+# Install the required Python packages
+RUN pip install -r requirements.txt
+
+# Copy the rest of the application code into the container
 COPY . .
 
-FROM python:3.9-alpine
+# Expose the port the app runs on
+EXPOSE 5000
 
-# הגדרת ספריית העבודה
-WORKDIR /app
-
-# העתקת התלויות והקוד מהשלב הקודם
-COPY --from=build /app /app
-
-# פקודת ההרצה של האפליקציה
+# Define the command to run the application
 CMD ["python", "app.py"]
