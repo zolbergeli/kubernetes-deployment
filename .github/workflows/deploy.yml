@@ -24,8 +24,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/python-k8s-helm:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/python-k8s-helm:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/python-k8s-helm:test .
+          docker push ${{ secrets.DOCKER_USERNAME }}/python-k8s-helm:test
 
       - name: Set up Helm
         run: |
