@@ -1,7 +1,10 @@
-name: Deploy to Kubernetes
+name: Deploy to Docker Hub & Kubernetes
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
