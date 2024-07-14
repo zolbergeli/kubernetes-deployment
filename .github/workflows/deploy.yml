@@ -19,13 +19,13 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: zolbergeli@gmail.com
+          username: zolbergeli
           password: 32876444eli
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/python-k8s-helm:test .
-          docker push ${{ secrets.DOCKER_USERNAME }}/python-k8s-helm:test
+          docker build -t zolbergeli/python-k8s-helm:test .
+          docker push zolbergeli/python-k8s-helm:test
 
       - name: Set up Helm
         run: |
