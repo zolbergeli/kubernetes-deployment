@@ -3,12 +3,12 @@ entries:
   my-python-app:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-07-15T10:57:29.106941601Z"
+    created: "2024-07-15T11:00:17.662956242Z"
     description: A Helm chart for Kubernetes
-    digest: 9a82ae517d4559032ff73afcb3adde8a9039a60f2348e55ad6883d3397b2df68
+    digest: 1a44692f389ce4d6d0d6da12e66206a8e78ea65eaa6bc6f897e3601adc4202ab
     name: my-python-app
     type: application
     urls:
     - https://zolbergeli.github.io/kubernetes-deployment/my-python-app-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-15T10:57:29.106459018Z"
+generated: "2024-07-15T11:00:17.661744614Z"
