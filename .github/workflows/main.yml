@@ -1,4 +1,4 @@
-name: Deploy to Docker Hub & Kubernetes
+name: Deploy to Docker Hub, GitHub Pages & Kubernetes
 
 on:
   push:
@@ -31,16 +31,21 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-
-      - name: Create Helm repository index
+      - name: Prepare GitHub Pages directory
         run: |
-          helm repo index . --url https://zolbergeli.github.io/kubernetes-deployment/
+          mkdir -p public
+          cp *.tgz public/
+          helm repo index public --url https://zolbergeli.github.io/kubernetes-deployment/ --merge public/index.yaml
+
+      - name: Create index.html for GitHub Pages
+        run: |
+          echo "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Helm Charts Repository</title></head><body><h1>Helm Charts Repository</h1><p>This is the Helm charts repository.</p><ul>$(for file in public/*.tgz; do echo "<li><a href=\"$(basename $file)\">$(basename $file)</a></li>"; done)</ul></body></html>" > public/index.html
 
       - name: Upload Helm charts to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .  
+          publish_dir: public
 
       - name: Deploy with Helm
         env:
