@@ -34,7 +34,7 @@ jobs:
       - name: Package Helm chart into TGZ
         run: |
           mkdir -p charts
-          helm package MY-PYTHON-APP --destination charts
+          helm package my-python-app --destination charts
 
       - name: Prepare GitHub Pages directory
         run: |
