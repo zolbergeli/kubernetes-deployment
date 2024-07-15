@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30001  # תוכל לבחור פורט אחר אם רצונך
+      nodePort: 30001  
   selector:
     app: {{ .Chart.Name }}
 
