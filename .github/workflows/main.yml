@@ -31,10 +31,15 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
+      - name: Package Helm chart into TGZ
+        run: |
+          mkdir -p charts
+          helm package MY-PYTHON-APP --destination charts
+
       - name: Prepare GitHub Pages directory
         run: |
           mkdir -p public
-          cp *.tgz public/
+          cp charts/*.tgz public/
           helm repo index public --url https://zolbergeli.github.io/kubernetes-deployment/ --merge public/index.yaml
 
       - name: Create index.html for GitHub Pages
