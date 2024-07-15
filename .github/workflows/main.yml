@@ -52,8 +52,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: public
 
-      - name: Deploy with Helm
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
-        run: |
-          helm upgrade --install my-python-app ./path/to/your/helm/chart
+      #- name: Deploy with Helm
+      #  env:
+      #    KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      #  run: |
+      #    helm upgrade --install my-python-app ./path/to/your/helm/chart
