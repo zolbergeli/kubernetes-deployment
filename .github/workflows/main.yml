@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build-and-deploy:
@@ -34,8 +31,19 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
+
+      - name: Create Helm repository index
+        run: |
+          helm repo index . --url https://github.com/zolbergeli/kubernetes-deployment/
+
+      - name: Upload Helm charts to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .  
+
       - name: Deploy with Helm
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: |
-          helm upgrade --install my-python-app ./python-k8s-helm-chart
+          helm upgrade --install my-python-app ./path/to/your/helm/chart
